@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Electricity Backup</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<header class="topbar">
+    <a class="brand" href="#">
+        <span class="brand-mark">⚡</span>
+        <span>Smart Electricity Backup
+            <small>SMART BACKUP · ESSENTIAL POWER</small>
+        </span>
+    </a>
+
+    <div class="top-right">
+        <span class="live-dot"></span>
+        <span id="connectionLabel">SYSTEM ONLINE</span>
+        <span class="chip">PROTOTYPE SIMULATOR</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <div>
+            <p class="eyebrow">SMART ELECTRICITY BACKUP & ENERGY MANAGEMENT</p>
+            <h1>Power that puts<br/><span>essentials first.</span></h1>
+            <p class="hero-copy">
+                Monitor energy, simulate an outage and watch PowerSense
+                intelligently protect essential loads.
+            </p>
+        </div>
+
+        <div class="hero-status">
+            <div class="status-icon" id="heroIcon">⚡</div>
+            <div>
+                <small>CURRENT OPERATING MODE</small>
+                <strong id="heroMode">GRID NORMAL</strong>
+                <span id="heroSub">Grid supply available</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-heading">
+        <div>
+            <p class="eyebrow">AT A GLANCE</p>
+            <h2>System overview</h2>
+        </div>
+        <span class="updated" id="lastUpdated">LIVE SIMULATION</span>
+    </section>
+
+    <section class="stats-grid">
+
+        <article class="stat-card">
+            <div class="stat-top">
+                <span>Battery charge</span>
+                <span class="stat-icon">▰</span>
+            </div>
+            <strong id="batteryPct">82%</strong>
+            <div class="meter">
+                <i id="batteryMeter"></i>
+            </div>
+            <small id="batteryHint">Healthy · 12.8 V</small>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-top">
+                <span>Power consumption</span>
+                <span class="stat-icon">⌁</span>
+            </div>
+            <strong><span id="totalWatts">21</span><em> W</em></strong>
+            <div class="mini-bars">
+                <i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i>
+            </div>
+            <small>Connected load demand</small>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-top">
+                <span>Estimated backup</span>
+                <span class="stat-icon">◷</span>
+            </div>
+            <strong id="runtime">6.6<em> h</em></strong>
+            <div class="runtime-track">
+                <i id="runtimeMeter"></i>
+            </div>
+            <small>Based on active loads</small>
+        </article>
+
+        <article class="stat-card">
+            <div class="stat-top">
+                <span>Solar generation</span>
+                <span class="stat-icon">☀</span>
+            </div>
+            <strong><span id="solarWatts">65</span><em> W</em></strong>
+            <div class="solar-line"><span></span></div>
+            <small id="solarHint">Solar input available</small>
+        </article>
+
+    </section>
+
+    <section class="main-grid">
+
+        <article class="panel control-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">POWER CONTROL</p>
+                    <h2>Grid simulation</h2>
+                </div>
+                <span class="pill" id="gridPill">GRID CONNECTED</span>
+            </div>
+
+            <div class="grid-control">
+                <div class="grid-illustration">
+                    <div class="tower">⚡</div>
+                    <div>
+                        <strong id="gridTitle">Grid supply is active</strong>
+                        <small id="gridDescription">
+                            Loads are supplied by the grid.
+                        </small>
+                    </div>
+                </div>
+
+                <button class="primary-btn" id="gridToggle">
+                    Simulate power cut <span>→</span>
+                </button>
+
+                <p class="helper">
+                    Use this switch to simulate an outage safely in the
+                    web prototype. It does not control real electrical equipment.
+                </p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="panel-heading solar-heading">
+                <div>
+                    <p class="eyebrow">RENEWABLE INPUT</p>
+                    <h3>Solar conditions</h3>
+                </div>
+                <span class="sun-badge">☀ Solar</span>
+            </div>
+
+            <label class="range-label" for="sunSlider">
+                <span>Sunlight intensity</span>
+                <strong id="sunValue">65%</strong>
+            </label>
+
+            <input id="sunSlider" max="100" min="0"
+                   type="range" value="65"/>
+
+            <div class="range-ends">
+                <span>Cloudy</span>
+                <span>Full sunlight</span>
+            </div>
+
+            <p class="helper">
+                Adjust sunlight to change simulated solar generation and charging.
+            </p>
+
+        </article>
+
+        <article class="panel battery-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">ENERGY STORAGE</p>
+                    <h2>Battery monitor</h2>
+                </div>
+                <span class="battery-tag">LiFePO4 · 12 V</span>
+            </div>
+
+            <div class="battery-visual">
+                <div class="battery-shell">
+                    <div class="battery-fill" id="batteryFill"></div>
+                    <div class="battery-shine"></div>
+                </div>
+
+                <div class="battery-readout">
+                    <strong id="batteryBig">82<span>%</span></strong>
+                    <small>STATE OF CHARGE</small>
+                </div>
+            </div>
+
+            <div class="battery-details">
+                <div>
+                    <small>Battery voltage</small>
+                    <strong id="voltage">12.8 V</strong>
+                </div>
+
+                <div>
+                    <small>Capacity</small>
+                    <strong>20 Ah</strong>
+                </div>
+
+                <div>
+                    <small>Nominal energy</small>
+                    <strong>240 Wh</strong>
+                </div>
+            </div>
+
+            <div class="battery-note" id="batteryNote">
+                <span>✓</span>
+                Battery level is within the normal operating range.
+            </div>
+
+            <div class="demo-tools">
+                <label for="batterySlider">
+                    Demo battery level
+                    <strong id="batterySliderValue">82%</strong>
+                </label>
+
+                <input id="batterySlider" max="100" min="5"
+                       type="range" value="82"/>
+
+                <small>
+                    Move the slider to demonstrate low-battery load
+                    shedding without waiting for a real battery to drain.
+                </small>
+            </div>
+
+        </article>
+
+    </section>
+
+    <section class="section-heading loads-heading">
+        <div>
+            <p class="eyebrow">INTELLIGENT LOAD MANAGEMENT</p>
+            <h2>Connected loads</h2>
+        </div>
+
+        <span class="legend">
+            <i class="on-dot"></i> ON
+            <i class="off-dot"></i> OFF
+        </span>
+    </section>
+
+    <section class="loads-grid">
+
+        <article class="load-card" id="lightCard">
+            <div class="load-symbol light-symbol">☼</div>
+            <div class="load-info">
+                <strong>LED lights</strong>
+                <small>High priority · 6 W</small>
+            </div>
+            <span class="load-state" id="lightState">ON</span>
+            <p>Essential lighting for studying and daily activities.</p>
+        </article>
+
+        <article class="load-card" id="usbCard">
+            <div class="load-symbol usb-symbol">▣</div>
+            <div class="load-info">
+                <strong>USB charging</strong>
+                <small>High priority · 8 W</small>
+            </div>
+            <span class="load-state" id="usbState">ON</span>
+            <p>Phone charging and small connectivity devices.</p>
+        </article>
+
+        <article class="load-card" id="fanCard">
+            <div class="load-symbol fan-symbol">✳</div>
+            <div class="load-info">
+                <strong>DC fan</strong>
+                <small>Medium priority · 10 W</small>
+            </div>
+            <span class="load-state" id="fanState">ON</span>
+            <p>Comfort load; first to be shed when battery is low.</p>
+        </article>
+
+    </section>
+
+    <footer>
+        <span>Smart Electricity Backup © 2026</span>
+        <span>Smart Backup. Essential Power. Longer Runtime.</span>
+        <span>Educational software simulation · Not connected to hardware</span>
+    </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
